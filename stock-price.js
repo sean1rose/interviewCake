@@ -87,3 +87,6 @@ var getMaxProfit2 = function(prices) {
   }
   return maxProfit;
 }
+
+// COMPLEXITY:
+// O(n) time and O(1) space. Only loop thru the array once, updating the value as we go along...
