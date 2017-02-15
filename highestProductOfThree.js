@@ -130,3 +130,5 @@ var highestProductOf3 = (arrayOfInts) => {
 
   return highestProductOf3;
 }
+
+// O(n) time and O(1) additional space.
