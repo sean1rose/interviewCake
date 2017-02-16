@@ -15,7 +15,7 @@ var stockPricesYesterday = [10, 7, 5, 8, 11, 9, 4];
 // getMaxProfit(stockPricesYesterday);
   // --> returns 6 (buy at $5, sell at $11)
 
-// 1st ITERATION
+// 1st ITERATION -> WORKS
 var getMaxProfit = (stockPricesArray) => {
   var low = {i: 0, v: stockPricesArray[0]};
   var high = {i: 0, v: stockPricesArray[0]};
