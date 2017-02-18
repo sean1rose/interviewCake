@@ -1,6 +1,10 @@
 // https://www.youtube.com/watch?v=UxICsjrdlJA
 // https://www.safaribooksonline.com/library/view/javascript-the-good/9780596517748/ch04s15.html
 
+// https://www.sitepoint.com/implementing-memoization-in-javascript/
+
+// *** BEST RESOURCE *** (on page 208)
+// http://cdn.tsq.me/ebook/Data%20Structures%20and%20Algorithms%20with%20JavaScript.pdf
 
 // recursive
 var fibonacci = n => {
@@ -12,7 +16,10 @@ var fibonacci = n => {
 // fibonacci(10)
   // -> calls fib func 453 times!! (cal it 11 times, but it calls itself 442 times - think of recursion tree)
 
-// recursive using memoization (where you store answers for use later on, so don't have to go through entire recursion tree)...
+// DYNAMIC PROGRAMMING:
+  // an algorithm designed using DP starts by solving the simplest subproblem possible, storing that solution, then using that solution to solve more complex subproblems until the entire problem is solved.
+    // the solutions to each subproblem are typically stored in an array for easy access
+  // recursive using memoization (where you store answers for use later on)...
 var fibonacci = n => {
   var memo = [0,1];
   // var memoObj = {0: 0, 1: 1};
