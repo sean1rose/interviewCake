@@ -3,16 +3,19 @@
 // compute the # of ways to make 0.04 amount w/ those coin denominations
 // so all the permutations of denominations to add up to amount
 
+function Change() {
+    this.memo = {};
+}
 
-
-
-var coins = (amount, denominations) => {
-
-};
-
-// recursive function to calculate how many ways we can get the remaining amount from the reamining denominations...
-function changePossibilitiesTopDown(amountLeft, denominations, currentIndex) {
+Change.prototype.changePossibilitiesTopDown = function(amountLeft, denominations, currentIndex) {
     currentIndex = currentIndex || 0;
+
+    // check our memo and short-circuit if we've already solved this one
+    var memoKey = String([amountLeft, currentIndex]);
+    if (this.memo.hasOwnProperty(memoKey)) {
+        console.log('grabbing memo[' + memoKey + ']');
+        return this.memo[memoKey];
+    }
 
     // base cases:
     // we hit the amount spot on. yes!
@@ -33,10 +36,11 @@ function changePossibilitiesTopDown(amountLeft, denominations, currentIndex) {
     // for each number of times to use currentCoin
     var numPossibilities = 0;
     while (amountLeft >= 0) {
-        numPossibilities += changePossibilitiesTopDown(amountLeft,
-            denominations, currentIndex + 1);
+        numPossibilities += this.changePossibilitiesTopDown(amountLeft, denominations, currentIndex + 1);
         amountLeft -= currentCoin;
     }
 
+    // save the answer in our memo so we don't compute it again
+    this.memo[memoKey] = numPossibilities;
     return numPossibilities;
-}
+};
