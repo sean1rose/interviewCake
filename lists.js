@@ -81,5 +81,37 @@ class List {
     }
     return false;
   }
+
+  front() {
+    this.pos = 0;
+  }
+
+  end() {
+    this.pos = this.listSize - 1;
+  }
+
+  prev() {
+    if (this.pos > 0){
+      --this.pos;
+    }
+  }
+
+  next() {
+    if (this.pos > 0){
+      ++this.pos;
+    }
+  }
+
+  currentPos() {
+    return this.pos;
+  }
+
+  moveTo(position){
+    this.pos = position;
+  }
+
+  getElement() {
+    return this.dataStore[this.pos];
+  }
   
 }
