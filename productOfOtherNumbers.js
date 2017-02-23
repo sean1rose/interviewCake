@@ -15,7 +15,7 @@ var getProductsOfAllIntsExceptAtIndex = (arr) => {
     result.push(product);
   }
   return result;
-}
+};
 
 
 

@@ -1,3 +1,24 @@
+/*
+Suppose we could access yesterday's stock prices as an array, where:
+
+The values are the price in dollars of Apple stock.
+A higher index indicates a later time.
+So if the stock cost $500 at 10:30am and $550 at 11:00am, then:
+
+stockPricesYesterday[60] = 500;
+
+Write an efficient function that takes stockPricesYesterday and returns the best profit I could have made from 1 purchase and 1 sale of 1 Apple stock yesterday.
+
+For example:
+
+  var stockPricesYesterday = [10, 7, 5, 8, 11, 9];
+
+getMaxProfit(stockPricesYesterday);
+// returns 6 (buying for $5 and selling for $11)
+
+No "shorting"—you must buy before you sell. You may not buy and sell in the same time step (at least 1 minute must pass).
+*/
+
 // [x, y, z]
 // index ---> minutes past trade-opening time (9:30 am)
   // 0 -> 9:30
@@ -52,7 +73,7 @@ var getMaxProfit = (stockPricesArray) => {
   return maxProfit;
 };
 
-
+var prices = [10, 7, 5, 8, 11, 9, 4];
 // 2nd ITERATION...
 var getMaxProfit2 = function(prices) {
   if (prices.length < 2 || (prices.length == 2 && prices[0] > prices[1])){
@@ -74,16 +95,18 @@ var getMaxProfit2 = function(prices) {
     // calc what our potential profit would be at this current price...
     var potentialProfit = currentPrice - lowestPrice;
 
+    maxProfit = Math.max(maxProfit, potentialProfit);
     // 3) (DO THIS STEP AFTER STEP 4)
     // ensure lowestPrice is lowest we've seen so far...
-    lowestPrice = Math.min(lowestPrice, currentPrice);
+    // lowestPrice = Math.min(lowestPrice, currentPrice);
 
     // SWITCH Steps 3 and 4 around
 
+    lowestPrice = Math.min(lowestPrice, currentPrice);
     // 4) DO THIS STEP (STEP 4) BEFORE STEP 3!!!
     // CALCUALTE MAXPROFIT BEFORE UPDATING LOWESTPRICE (this ensures we're always buying at earlier price, and never the current rpice)
     // update maxProfit if it's better...
-    maxProfit = Math.max(maxProfit, potentialProfit);
+    // maxProfit = Math.max(maxProfit, potentialProfit);
   }
   return maxProfit;
 }
