@@ -1,5 +1,5 @@
 /*
-LISTS
+LISTS - ARRAY BASED IMPLEMENTATION
   // USE CASES: 
     // when order of data being stored doesn't matter
     // when you do't have to search for the data stored
