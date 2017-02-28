@@ -19,6 +19,8 @@
   * Use a [NODE] class and a [LINKED LIST] class
 */
 
+
+/***** REGULAR LINKED LIST *****/
 class Node {
   constructor(element){
     this.element = element;
@@ -26,16 +28,12 @@ class Node {
   }
 }
 
-// function Node(element) {
-//   this.element = element;
-//   this.next = null;
-// }
-
 class LinkedList {
   constructor(){
     this.head = new Node('head');
     console.log('this.head = ', this.head);
   }
+
 
   find(item) {
     // cycle thru LL - look for match on element
@@ -48,13 +46,14 @@ class LinkedList {
     return currentNode;
   }
 
+
   // 1,2,3,4
   // insert(2b, 2)
-  insert(newElement, item) {
+  insert(newElement, itemToInsertAfter) {
     // 2b
     var addedElement = new Node(newElement);
     // 2
-    var current = this.find(item);
+    var current = this.find(itemToInsertAfter);
     // set 3 (2's next) as 2b's next
     addedElement.next = current.next;
     // set 2b as 2's next
@@ -64,6 +63,7 @@ class LinkedList {
 
   findPrevious(item) {
     var currentNode = this.head;
+    // so long as [not at last element] && [next element is not the item we're looking for]
     while(currentNode.next != null && currentNode.next.element != item) {
       // advance to the next node so long as not last node && next node is not the item. 
       currentNode = currentNode.next;
@@ -73,7 +73,10 @@ class LinkedList {
   }
 
   remove(item) {
+    // find previous item
     var previousItem = this.findPrevious(item);
+    // point previous item's next at find(item).next
+    // point find(item).next at null
     /*
     if (previousItem.next !== null){
       previousItem.next = previousItem.next.next;
@@ -91,5 +94,60 @@ class LinkedList {
       currentNode = currentNode.next;
     }
   }
+}
 
+/***** DOUBLY LINKED LIST *****/
+class Node {
+  constructor(item){
+    this.element = item;
+    this.next = null;
+    this.previous = null;
+  }
+}
+
+class DoubleLinkedList {
+  constructor(){
+    this.head = new Node('head');
+  }
+
+  find(item) {
+    var current = this.head;
+    while(current.element != item){
+      current = current.next;
+    }
+    return current;
+  }
+
+  insert(insertAfter, itemToInsert) {
+    var insertedItem = new Node(itemToInsert);
+    var itemToInsertAfter = this.find(insertAfter);
+    insertedItem.next = itemToInsertAfter.next;
+    insertedItem.previous = itemToInsertAfter;
+    itemToInsertAfter.next = insertedItem;
+  }
+
+  remove(item) {
+    var current = this.find(item);
+    current.previous.next = current.next;
+    current.next.previous = current.previous;
+    current.previous = null;
+    current.next = null;
+    return current.element;
+  }
+
+  findLast(){
+    var current = this.head;
+    while(current.next != null){
+      current = current.next;
+    }
+    return current;
+  }
+
+  displayReverse(){
+    var current = this.findLast();
+    while(current.previous != null){
+      console.log(current.element);
+      current = current.previous;
+    }
+  }
 }
