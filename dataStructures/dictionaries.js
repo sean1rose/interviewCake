@@ -21,7 +21,7 @@ class Dictionary {
 
   showAll() {
     // Object.keys returns all the keys stored in that object
-    for (var key in this.dataStore.sort((a,b) => a - b)){
+    for (var key in this.dataStore){
       console.log('a: ' + key + " -> " + this.dataStore[key]);
     }
   }
